@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Session;
-use DB;  // Untuk raw queries
+use DB;  // Untuk raw queries....
 
 class AuthController extends Controller
 {
