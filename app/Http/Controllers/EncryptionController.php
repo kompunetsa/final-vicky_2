@@ -1,25 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 class EncryptionController extends Controller
 {
     public function encryptData(Request $request)
     {
-        // Kunci lemah untuk AES-256-CBC
-        $weakKey = '1234567890123456';  // Kunci lemah
-        $iv = '1234567890123456';  // IV yang lemah (16 bytes)
+         $data = 'Sensitive Data';
+        // Kunci acak 32-byte (untuk AES-256-CBC) — simpan di tempat aman
+        $key = hash('sha256', 'kataacakadut', true); // hasil 32-byte
+        // IV acak 16-byte
+        $iv = random_bytes(16);
+        // Enkripsi dengan AES-256-CBC (output RAW binary)
+        $cipherText = openssl_encrypt($data, 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv);
 
-        // Data yang akan dienkripsi
-        $data = 'Sensitive Data';
-
-        // Enkripsi menggunakan AES-256-CBC dengan kunci lemah
-        $cipher = openssl_encrypt($data, 'AES-256-CBC', $weakKey, 0, $iv);
-
+        // Gabungkan IV + ciphertext, encode ke base64 agar mudah dikirim
+        $encrypted = base64_encode($iv . $cipherText);
         return response()->json([
-            'encrypted_data' => $cipher
+            'encrypted_data' => $encrypted
         ]);
+
     }
+
 }
+
