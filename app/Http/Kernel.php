@@ -24,7 +24,7 @@ class Kernel extends HttpKernel
      * The application's route middleware groups.
      *
      * These middleware are assigned to groups, allowing convenient access to the middleware
-     * by the group name..
+     * by the group name...
      *
      * @var array
      */
@@ -36,7 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Illuminate\Auth\Middleware\Authenticate::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class, // added for CSRF protection
+            \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class, // added for CSRF protection.
         ],
 
         'api' => [
